@@ -14,7 +14,7 @@ export default [
     ],
   },
   {
-    files: ['backend/**/*.{ts,tsx,js,jsx}', 'frontend/**/*.{ts,tsx,js,jsx}'],
+    files: ['backend/**/*.{ts,tsx,js,jsx}', 'frontend/**/*.{ts,tsx,js,jsx}', 'src/**/*.{ts,tsx,js,jsx}'],
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',
