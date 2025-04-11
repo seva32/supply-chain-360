@@ -68,7 +68,7 @@ jobs:
         run: yarn install
 
       - name: Run Playwright Tests (Frontend)
-        run: npx nx frontend:e2e
+        run: npx nx run frontend:e2e
         env:
           CI: true
 
