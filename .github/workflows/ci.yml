@@ -26,8 +26,15 @@ jobs:
       - name: Run ESLint
         run: yarn lint
 
-      - name: Run Tests
-        run: yarn test
+      - name: Run Jest Tests (Backend)
+        run: npx nx test backend --passWithNoTests
+        env:
+          CI: true
+
+      - name: Run Playwright Tests (Frontend)
+        run: npx nx e2e frontend --headless --browser=firefox --headed=false --no-sandbox --disable-dev-shm-usage
+        env:
+          CI: true
 
       - name: Build Frontend
         run: yarn build --prefix frontend
