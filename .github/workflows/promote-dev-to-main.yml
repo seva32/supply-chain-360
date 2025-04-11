@@ -22,6 +22,6 @@ jobs:
             --title "Promote dev to main" \
             --body "Automated promotion PR from dev to main."
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
 
