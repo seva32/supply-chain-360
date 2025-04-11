@@ -9,10 +9,12 @@ export default [
       '**/dist',
       '**/vite.config.*.timestamp*',
       '**/vitest.config.*.timestamp*',
+      'node_modules',
+      './nx',
     ],
   },
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: ['backend/**/*.{ts,tsx,js,jsx}', 'frontend/**/*.{ts,tsx,js,jsx}', 'src/**/*.{ts,tsx,js,jsx}'],
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',

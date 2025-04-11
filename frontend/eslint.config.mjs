@@ -5,8 +5,7 @@ export default [
   ...baseConfig,
   ...nx.configs['flat/react'],
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    // Override or add rules here
+    files: ['src/**/*.{ts,tsx,js,jsx}'],
     rules: {},
   },
 ];
