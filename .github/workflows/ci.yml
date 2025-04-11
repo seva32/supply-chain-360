@@ -90,7 +90,7 @@ jobs:
         run: yarn install
 
       - name: Build Frontend
-        run: yarn build --prefix frontend
+        run: cd frontend && yarn build
 
   build-backend:
     name: Build 🧱 Backend
@@ -110,4 +110,4 @@ jobs:
         run: yarn install
 
       - name: Build Backend
-        run: yarn build --prefix backend
+        run: cd backend && yarn build
