@@ -13,7 +13,7 @@ jobs:
 
       - name: Check if PR already exists
         id: check_pr
-        uses: peter-evans/pull-request@v5
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           base: main
@@ -22,7 +22,7 @@ jobs:
 
       - name: Create PR if not exists
         if: steps.check_pr.outputs.pull-request-number == ''
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: 'Promote changes from dev to main'
