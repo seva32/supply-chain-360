@@ -38,6 +38,14 @@
       "options": {
         "passWithNoTests": true
       }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "src/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
     }
   }
 }
