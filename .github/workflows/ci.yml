@@ -68,7 +68,7 @@ jobs:
         run: yarn install
 
       - name: Run Playwright Tests (Frontend)
-        run: npx nx e2e frontend --headless --browser=firefox --headed=false --no-sandbox --disable-dev-shm-usage
+        run: npx nx e2e frontend-e2e --headless --browser=firefox --headed=false --no-sandbox --disable-dev-shm-usage
         env:
           CI: true
 
