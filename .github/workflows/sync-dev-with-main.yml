@@ -1,0 +1,27 @@
+name: Sync Dev with Main
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create PR from dev to main
+        run: |
+          gh pr create \
+            --base dev \
+            --head main \
+            --title "Sync dev with main" \
+            --body "Syncing dev with latest changes from main after production hotfix."
+        env:
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+
