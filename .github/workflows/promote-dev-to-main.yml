@@ -3,29 +3,25 @@ name: Promote Dev to Main
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   promote:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Check if PR already exists
-        id: check_pr
-        uses: peter-evans/pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: main
-          head: dev
-          search: true
+      - name: Create PR from dev to main
+        run: |
+          gh pr create \
+            --base main \
+            --head dev \
+            --title "Promote dev to main" \
+            --body "Automated promotion PR from dev to main."
+        env:
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-      - name: Create PR if not exists
-        if: steps.check_pr.outputs.pull-request-number == ''
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: 'Promote changes from dev to main'
-          body: 'This PR promotes the latest changes from dev into the main branch.'
-          base: main
-          head: dev
+
