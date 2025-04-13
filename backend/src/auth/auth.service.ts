@@ -7,8 +7,6 @@ import { PrismaService } from '../prisma/prisma.service'
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-const OTP_STORE = new Map() // In-memory store for demo. Use Redis in prod.
-
 @Injectable()
 export class AuthService {
   constructor(
@@ -19,18 +17,32 @@ export class AuthService {
 
   async requestOtp(email: string) {
     const otp = Math.floor(100000 + Math.random() * 900000).toString()
-    OTP_STORE.set(email, { otp, expires: Date.now() + 5 * 60 * 1000 })
+    const codeHash = await bcrypt.hash(otp, 10)
+    const expiresAt = new Date(Date.now() + 5 * 60 * 1000)
+
+    let user = await this.usersService.findByEmail(email)
+    if (!user) {
+      user = await this.usersService.create({ email, role: 'USER' })
+    }
+
+    await this.prisma.otp.create({
+      data: {
+        codeHash,
+        expiresAt,
+        userId: user.id,
+      },
+    })
 
     try {
       await sgMail.send({
-        to: 'sebas.warsaw@gmail.com',
+        to: email,
         from: 'hello@sfantini.us',
         subject: 'Your OTP Code',
         text: `Your OTP is ${otp}. It expires in 5 minutes.`,
       })
       console.log(`OTP sent to ${email}: ${otp}`)
     } catch (error) {
-      console.error('Error sending email:', error, error.response.body)
+      console.error('Error sending email:', error, error.response?.body)
       throw new UnauthorizedException('Failed to send OTP')
     }
 
@@ -38,24 +50,31 @@ export class AuthService {
   }
 
   async verifyOtp(email: string, otp: string) {
-    const record = OTP_STORE.get(email)
-    if (!record || record.otp !== otp || Date.now() > record.expires) {
+    const user = await this.usersService.findByEmail(email)
+    if (!user) {
+      throw new UnauthorizedException('User not found')
+    }
+
+    const otpRecord = await this.prisma.otp.findFirst({
+      where: {
+        userId: user.id,
+        expiresAt: { gt: new Date() },
+      },
+      orderBy: { expiresAt: 'desc' },
+    })
+
+    if (!otpRecord || !(await bcrypt.compare(otp, otpRecord.codeHash))) {
       throw new UnauthorizedException('Invalid or expired OTP')
     }
 
-    OTP_STORE.delete(email)
+    await this.prisma.otp.delete({ where: { id: otpRecord.id } })
 
-    let user = await this.usersService.findByEmail(email)
-    if (!user) {
-      user = await this.usersService.create({ email, role: 'USER' })
-    }
-
-    const payload = { sub: user.id, role: user.role }
-    const token = this.jwtService.sign(payload)
-
+    const { accessToken, refreshToken } = await this.generateTokens(user)
+    await this.storeRefreshToken(user.id, refreshToken)
     return {
-      access_token: token,
-      user,
+      accessToken,
+      refreshToken,
+      user: { email: user.email, role: user.role },
     }
   }
 
