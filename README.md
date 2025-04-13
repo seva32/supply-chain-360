@@ -65,4 +65,5 @@ Nx Console is an editor extension that enriches your developer experience. It le
 
 ```bash
 docker compose up -d
+yarn run prisma:migrate --name init_supply_chain
 ```
