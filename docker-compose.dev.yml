@@ -1,16 +1,16 @@
-version: '3.8'
-
 services:
   postgres:
-    image: postgres:15
-    container_name: postgres_db
+    image: postgres:16
+    container_name: '${POSTGRES_HOST_DEV}'
     restart: always
+    env_file:
+      - .env.local
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: supply_chain
+      POSTGRES_USER: '${POSTGRES_USER}'
+      POSTGRES_PASSWORD: '${POSTGRES_PASSWORD}'
+      POSTGRES_DB: '${POSTGRES_DB}'
     ports:
-      - '5432:5432'
+      - '5434:5432'
     volumes:
       - pgdata:/var/lib/postgresql/data
 
