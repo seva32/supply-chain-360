@@ -7,6 +7,9 @@ import { PrismaService } from '../prisma/prisma.service'
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
+// Rate limit for OTP requests in memory per instance, TODO: use Redis or similar for distributed rate limiting
+const OTP_RATE_LIMIT = new Map<string, number>()
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -24,6 +27,17 @@ export class AuthService {
     if (!user) {
       user = await this.usersService.create({ email, role: 'USER' })
     }
+
+    if (
+      OTP_RATE_LIMIT.has(email) &&
+      Date.now() - OTP_RATE_LIMIT.get(email) < 60_000
+    ) {
+      throw new UnauthorizedException(
+        'Please wait before requesting another OTP.',
+      )
+    }
+
+    OTP_RATE_LIMIT.set(email, Date.now())
 
     await this.prisma.otp.create({
       data: {
@@ -102,9 +116,24 @@ export class AuthService {
     })
   }
 
-  async verifyRefreshToken(userId: string, token: string) {
-    const user = await this.prisma.user.findUnique({ where: { id: userId } })
+  async verifyRefreshToken(email: string, token: string) {
+    const user = await this.prisma.user.findUnique({ where: { email } })
     if (!user?.refreshToken) return false
-    return bcrypt.compare(token, user.refreshToken)
+    const isValid = bcrypt.compare(token, user.refreshToken)
+
+    if (!isValid) throw new UnauthorizedException('Invalid refresh token')
+
+    const tokens = await this.generateTokens(user)
+    await this.storeRefreshToken(user.id, tokens.refreshToken)
+
+    return tokens
+  }
+
+  async logout(email: string) {
+    await this.prisma.user.update({
+      where: { email },
+      data: { refreshToken: null },
+    })
+    return { message: 'Logged out' }
   }
 }
