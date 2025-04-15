@@ -1,0 +1,33 @@
+.container {
+  background-color: #f8f8f8;
+  padding: 80px 52px;
+}
+
+.title {
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.statsGrid {
+  text-align: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  display: grid;
+}
+
+@media (width <= 991px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (width <= 640px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}

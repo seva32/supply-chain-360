@@ -1,0 +1,27 @@
+.heroSection {
+    background: linear-gradient(90deg, #9747ff 100%, #4318d1 0%);
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px 52px;
+    display: flex;
+}
+
+.heroImage {
+    border-radius: 16px;
+    width: 552px;
+    height: 368px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+@media (width <=991px) {
+    .heroSection {
+        text-align: center;
+        flex-direction: column;
+        padding: 60px 20px;
+    }
+
+    .heroImage {
+        width: 100%;
+        max-width: 552px;
+    }
+}

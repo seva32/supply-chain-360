@@ -1,13 +1,18 @@
-// Uncomment this line to use CSS modules
-// import styles from './app.module.scss';
-import Welcome from './welcome';
+import Home from '../home/Home'
+import Login from '../login/Login'
+import Layout from '../layout/Layout'
+import Dashboard from '../dashboard/Dashboard'
+
+import './app.module.scss'
 
 export function App() {
   return (
-    <div>
-      <Welcome title="frontend" />
-    </div>
-  );
+    <Layout>
+      {/* <Home /> */}
+      {/* <Login /> */}
+      <Dashboard />
+    </Layout>
+  )
 }
 
-export default App;
+export default App

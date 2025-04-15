@@ -1,0 +1,73 @@
+.loginContainer {
+  background-color: #4318d1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-family: Inter;
+}
+
+.formContainer {
+  background-color: #fff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 90%;
+  max-width: 400px;
+  padding: 32px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  color: #4318d1;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.input {
+  border: 1px solid #9747ff;
+  border-radius: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: 2px solid #4318d1;
+  outline-offset: 1px;
+}
+
+.submitButton {
+  color: #fff;
+  background-color: #9747ff;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  padding: 14px 0;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submitButton:focus {
+  outline: 2px solid #4318d1;
+  outline-offset: 2px;
+}
+
+.submitButton:hover:not([aria-disabled='true']) {
+  opacity: 0.9;
+}
+
+.submitButton[aria-disabled='true'] {
+  cursor: not-allowed;
+  background-color: #d1d5db;
+}
