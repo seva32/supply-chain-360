@@ -1,0 +1,31 @@
+.contentWrapper {
+  max-width: 538px;
+}
+
+.heading {
+  color: #fff;
+  margin-bottom: 30px;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 67.2px;
+}
+
+.description {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+@media (width <= 991px) {
+  .contentWrapper {
+    margin-bottom: 40px;
+  }
+}
+
+@media (width <= 640px) {
+  .heading {
+    font-size: 40px;
+    line-height: 48px;
+  }
+}
