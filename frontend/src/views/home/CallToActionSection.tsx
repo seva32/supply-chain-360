@@ -1,6 +1,4 @@
-'use client'
-
-import * as React from 'react'
+import Button from '../../common/Button'
 import styles from './CallToActionSection.module.css'
 
 function CallToActionSection() {
@@ -11,15 +9,16 @@ function CallToActionSection() {
         Join thousands of businesses that trust us with their logistics needs.
         Get started today!
       </p>
-      <button
-        className={styles.ctaButton}
+      <Button
+        variant="primary"
+        size="large"
         onClick={() => {
           // Handle contact action
         }}
         aria-label="Contact Us"
       >
         Contact Us Now
-      </button>
+      </Button>
     </section>
   )
 }

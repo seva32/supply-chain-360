@@ -3,28 +3,6 @@
   display: flex;
 }
 
-.primaryButton {
-  color: #4318d1;
-  cursor: pointer;
-  background-color: #fff;
-  border-radius: 8px;
-  border: none;
-  padding: 18px 32px;
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.secondaryButton {
-  color: #fff;
-  cursor: pointer;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 8px;
-  padding: 18px 32px;
-  font-size: 18px;
-  font-weight: 500;
-}
-
 @media (width <= 640px) {
   .buttonGroup {
     flex-direction: column;

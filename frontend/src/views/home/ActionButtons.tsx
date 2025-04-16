@@ -1,11 +1,11 @@
-import React from 'react'
+import Button from '../../common/Button'
 import styles from './ActionButtons.module.css'
 
 export function ActionButtons() {
   return (
     <div className={styles.buttonGroup}>
-      <button className={styles.primaryButton}>Get Started</button>
-      <button className={styles.secondaryButton}>Learn More</button>
+      <Button variant="primary" size="large">Get Started</Button>
+      <Button variant="secondary" size="large">Learn More</Button>
     </div>
   )
 }

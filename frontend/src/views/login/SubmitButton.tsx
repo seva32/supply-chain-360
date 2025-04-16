@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Login.module.css'
+import Button from '../../common/Button'
 
 interface SubmitButtonProps {
   isLoading?: boolean
@@ -13,13 +13,13 @@ export const SubmitButton: React.FC<SubmitButtonProps> = ({
   isEnabled,
 }) => {
   return (
-    <button
-      type="submit"
-      className={styles.submitButton}
+    <Button
+      variant="primary"
+      size="large"
       disabled={!isEnabled}
-      aria-disabled={!isEnabled}
+      aria-label={label}
     >
       {isLoading ? 'Loading...' : label}
-    </button>
+    </Button>
   )
 }

@@ -1,6 +1,6 @@
-'use client'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
+import Button from '../../common/Button'
 import styles from './WIP.module.css'
 
 function WIP() {
@@ -17,7 +17,7 @@ function WIP() {
         return prev + 1
       })
     }, 50)
-    return () => clearInterval(interval) // Cleanup on component unmount
+    return () => clearInterval(interval)
   }, [])
 
   return (
@@ -41,18 +41,16 @@ function WIP() {
         </div>
         <p className={styles.progressText}>{progress + '% Complete'}</p>
         <div className={styles.buttonGroup}>
-          <button
-            className={styles.primaryButton}
-            onClick={() => navigate('/')}
-          >
+          <Button variant="primary" size="medium" onClick={() => navigate('/')}>
             Go Back
-          </button>
-          <button
-            className={styles.secondaryButton}
+          </Button>
+          <Button
+            variant="secondary"
+            size="medium"
             onClick={() => window.location.reload()}
           >
             Refresh Page
-          </button>
+          </Button>
         </div>
       </div>
     </div>

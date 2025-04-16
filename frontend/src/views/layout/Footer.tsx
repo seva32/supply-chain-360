@@ -73,6 +73,11 @@ export default function Footer() {
                   onMouseLeave={() => setHover(null)}
                   className={styles.link}
                   style={{ color: hover === item ? '#4318D1' : undefined }}
+                  href={item
+                    .replace('freight', '/services')
+                    .replace('warehouse', '/services')
+                    .replace('customs', '/services')
+                    .replace('supply', '/services')}
                 >
                   {item
                     .replace('freight', 'Freight Forwarding')
@@ -92,6 +97,11 @@ export default function Footer() {
                   onMouseLeave={() => setHover(null)}
                   className={styles.link}
                   style={{ color: hover === item ? '#4318D1' : undefined }}
+                  href={item
+                    .replace('about', '/about')
+                    .replace('careers', '/careers')
+                    .replace('news', '/news')
+                    .replace('contact', '/contact')}
                 >
                   {item
                     .replace('about', 'About Us')
@@ -131,6 +141,10 @@ export default function Footer() {
                   onMouseLeave={() => setHover(null)}
                   className={styles.link}
                   style={{ color: hover === item ? '#4318D1' : undefined }}
+                  href={item
+                    .replace('privacy', '/policy')
+                    .replace('terms', '/terms')
+                    .replace('cookies', '/terms')}
                 >
                   {item
                     .replace('privacy', 'Privacy Policy')

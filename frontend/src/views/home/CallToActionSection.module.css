@@ -30,24 +30,3 @@
   font-size: 20px;
   line-height: 30px;
 }
-
-.ctaButton {
-  color: #4318d1;
-  cursor: pointer;
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 16px 32px;
-  font-size: 18px;
-  font-weight: 500;
-  border: none;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.ctaButton:hover {
-  background-color: #f8f8f8;
-}
-
-.ctaButton:focus {
-  outline: 2px solid #fff;
-  outline-offset: 2px;
-}
