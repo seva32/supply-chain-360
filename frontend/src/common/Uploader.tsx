@@ -1,20 +1,63 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Uploader.module.css'
 
 interface FileUploaderProps {
-  dragOver?: boolean;
-  uploadProgress?: number;
-  fileList?: Array<File>;
+  onUpload: (file: File) => Promise<number> // Function to handle file upload, returns upload progress
 }
 
-const FileUploader: React.FC<FileUploaderProps> = ({ dragOver, uploadProgress, fileList = [] }) => {
+const FileUploader: React.FC<FileUploaderProps> = ({ onUpload }) => {
+  const [dragOver, setDragOver] = useState(false)
+  const [uploadProgress, setUploadProgress] = useState(0)
+  const [fileList, setFileList] = useState<File[]>([])
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    setDragOver(true)
+  }
+
+  const handleDragLeave = () => {
+    setDragOver(false)
+  }
+
+  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    setDragOver(false)
+
+    if (e.dataTransfer.files.length > 0) {
+      const file = e.dataTransfer.files[0]
+      setFileList([file])
+      await uploadFile(file)
+    }
+  }
+
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0]
+      setFileList([file])
+      await uploadFile(file)
+    }
+  }
+
+  const uploadFile = async (file: File) => {
+    try {
+      setUploadProgress(0)
+      const progress = await onUpload(file)
+      setUploadProgress(progress)
+    } catch (error) {
+      console.error('File upload failed:', error)
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.section}>
         <label className={styles.label}>Upload Files</label>
         <div
-          style={{ background: dragOver ? '#F8FAFC' : '#FFF' }}
           className={styles.dropArea}
+          style={{ background: dragOver ? '#F8FAFC' : '#FFF' }}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
         >
           <div className={styles.iconContainer}>
             <svg
@@ -32,9 +75,15 @@ const FileUploader: React.FC<FileUploaderProps> = ({ dragOver, uploadProgress, f
             </svg>
           </div>
           <div className={styles.helperText}>Drag and drop files here or</div>
-          <button type="button" className={styles.button}>
+          <label className={styles.button}>
             Choose Files
-          </button>
+            <input
+              type="file"
+              className={styles.fileInput}
+              onChange={handleFileSelect}
+              hidden
+            />
+          </label>
 
           {fileList.length > 0 && (
             <div className={styles.uploadWrapper}>
@@ -62,7 +111,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ dragOver, uploadProgress, f
                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   />
                 </svg>
-                <span>document.pdf</span>
+                <span>{fileList[0].name}</span>
               </div>
             </div>
           )}

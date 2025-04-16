@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import styles from './AboutUs.module.css'
 
-import { FileUploader } from '../../common'
-
 const missionCards = [
   {
     icon: (
@@ -98,7 +96,6 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
-      <FileUploader />
     </div>
   )
 }
