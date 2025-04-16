@@ -8,6 +8,7 @@ import {
   AboutUs,
   ContactUs,
   Services,
+  Policies,
 } from '../../views'
 import WIP from '../../views/wip/WIP'
 
@@ -33,6 +34,14 @@ export const routes: RouteObject[] = [
     element: (
       <Layout>
         <AboutUs />
+      </Layout>
+    ),
+  },
+  {
+    path: '/policies',
+    element: (
+      <Layout>
+        <Policies />
       </Layout>
     ),
   },

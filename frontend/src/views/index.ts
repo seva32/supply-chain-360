@@ -5,5 +5,6 @@ export { default as Dashboard } from './dashboard/Dashboard'
 export { default as AboutUs } from './about/AboutUs'
 export { default as ContactUs } from './contact/ContactUs'
 export { default as Services } from './services/Services'
+export { default as Policies } from './policies/Policies'
 
 export { dashboardLoader } from './dashboard/dashboardLoader'

@@ -142,7 +142,7 @@ export default function Footer() {
                   className={styles.link}
                   style={{ color: hover === item ? '#4318D1' : undefined }}
                   href={item
-                    .replace('privacy', '/policy')
+                    .replace('privacy', '/policies')
                     .replace('terms', '/terms')
                     .replace('cookies', '/terms')}
                 >
