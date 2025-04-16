@@ -7,6 +7,7 @@ import {
   dashboardLoader,
   AboutUs,
   ContactUs,
+  Services,
 } from '../../views'
 import WIP from '../../views/wip/WIP'
 
@@ -23,7 +24,7 @@ export const routes: RouteObject[] = [
     path: '/services',
     element: (
       <Layout>
-        <WIP />
+        <Services />
       </Layout>
     ),
   },
