@@ -9,8 +9,10 @@ import {
   ContactUs,
   Services,
   Policies,
+  Terms,
+  TrackShipment,
 } from '../../views'
-import WIP from '../../views/wip/WIP'
+// import WIP from '../../views/wip/WIP'
 
 export const routes: RouteObject[] = [
   {
@@ -46,6 +48,14 @@ export const routes: RouteObject[] = [
     ),
   },
   {
+    path: '/terms',
+    element: (
+      <Layout>
+        <Terms />
+      </Layout>
+    ),
+  },
+  {
     path: '/contact',
     element: (
       <Layout>
@@ -57,7 +67,7 @@ export const routes: RouteObject[] = [
     path: '/track-shipment',
     element: (
       <Layout>
-        <WIP />
+        <TrackShipment />
       </Layout>
     ),
   },

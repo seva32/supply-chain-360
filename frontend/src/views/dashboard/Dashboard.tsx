@@ -1,6 +1,10 @@
 'use client'
 import { useState } from 'react'
+import Overview from './overview/Overview'
+import Users from './users/Users'
 import styles from './Dashboard.module.css'
+import Shipments from './shipments/Shipments'
+import Invoices from './invoices/Invoices'
 
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -26,6 +30,21 @@ function Dashboard() {
     }
   }
 
+  const renderContent = () => {
+    switch (activeMenu) {
+      case 'overview':
+        return <Overview />
+      case 'users':
+        return <Users />
+      case 'shipments':
+        return <Shipments />
+      case 'invoices':
+        return <Invoices />
+      default:
+        return <div>Select a menu to view content</div>
+    }
+  }
+
   return (
     <div className={styles.app}>
       <div
@@ -44,7 +63,7 @@ function Dashboard() {
         </div>
 
         <nav className={styles.nav}>
-          {['dashboard', 'users', 'settings'].map((menu) => (
+          {['overview', 'users', 'shipments', 'invoices'].map((menu) => (
             <div className={styles.navGroup} key={menu}>
               <button
                 className={styles.navButton}
@@ -137,23 +156,7 @@ function Dashboard() {
           </div>
         </header>
 
-        <main className={styles.content}>
-          <h1 className={styles.pageTitle}>Dashboard Overview</h1>
-          <div className={styles.cards}>
-            <div className={styles.card}>
-              <h3>Total Users</h3>
-              <p>1,234</p>
-            </div>
-            <div className={styles.card}>
-              <h3>Revenue</h3>
-              <p>$45,678</p>
-            </div>
-            <div className={styles.card}>
-              <h3>Sessions</h3>
-              <p>8,421</p>
-            </div>
-          </div>
-        </main>
+        <main className={styles.content}>{renderContent()}</main>
       </div>
     </div>
   )
