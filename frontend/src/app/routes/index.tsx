@@ -1,5 +1,13 @@
 import { RouteObject } from 'react-router'
-import { Dashboard, Login, Layout, Home, dashboardLoader, AboutUs } from '../../views'
+import {
+  Dashboard,
+  Login,
+  Layout,
+  Home,
+  dashboardLoader,
+  AboutUs,
+  ContactUs,
+} from '../../views'
 import WIP from '../../views/wip/WIP'
 
 export const routes: RouteObject[] = [
@@ -31,7 +39,7 @@ export const routes: RouteObject[] = [
     path: '/contact',
     element: (
       <Layout>
-        <WIP />
+        <ContactUs />
       </Layout>
     ),
   },
