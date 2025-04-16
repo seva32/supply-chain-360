@@ -5,6 +5,7 @@ import Users from './users/Users'
 import styles from './Dashboard.module.css'
 import Shipments from './shipments/Shipments'
 import Invoices from './invoices/Invoices'
+import { Link } from 'react-router'
 
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -52,11 +53,13 @@ function Dashboard() {
         style={{ width: sidebarOpen ? '280px' : '64px' }}
       >
         <div className={styles.sidebarHeader}>
-          <img
-            src="https://placehold.co/32x32"
-            alt="Logo"
-            className={styles.logo}
-          />
+          <Link to="/" className={styles.logoLink}>
+            <img
+              src="https://placehold.co/32x32"
+              alt="Logo"
+              className={styles.logo}
+            />
+          </Link>
           <span className={styles.logoText} hidden={!sidebarOpen}>
             Dashboard
           </span>

@@ -6,7 +6,7 @@ export function HeroContent() {
   return (
     <div className={styles.contentWrapper}>
       <h1 className={styles.heading}>
-        Global Logistics Solutions for Modern Business
+        Logistics Solutions for Modern Business
       </h1>
       <p className={styles.description}>
         Streamline your supply chain with our advanced logistics platform.

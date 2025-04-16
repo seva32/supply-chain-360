@@ -169,7 +169,9 @@ function Users() {
                   </td>
                   <td>
                     <div className={styles.actions}>
-                      <button className={styles.editBtn}>✏️</button>
+                      <button className={styles.editBtn}>
+                        <span role="img" aria-label="Edit">✏️</span>
+                      </button>
                       <button className={styles.deleteBtn}>🗑️</button>
                     </div>
                   </td>
@@ -184,7 +186,9 @@ function Users() {
             <div className={styles.modal}>
               <div className={styles.modalHeader}>
                 <h2>Add New User</h2>
-                <button onClick={() => setShowAddUser(false)}>✖️</button>
+                <button onClick={() => setShowAddUser(false)}>
+                  <span role="img" aria-label="Close">✖️</span>
+                </button>
               </div>
               <div className={styles.formGroup}>
                 <label>Name</label>

@@ -13,10 +13,12 @@
 }
 
 .heroImage {
-    border-radius: 16px;
-    width: 552px;
+    border-radius: 8px;
+    width: 452px;
     height: 368px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    background-color: #e9d8ff;
+    border: 2rem white solid;
 }
 
 @media (width <=991px) {
@@ -28,6 +30,6 @@
 
     .heroImage {
         width: 100%;
-        max-width: 552px;
+        max-width: 452px;
     }
 }

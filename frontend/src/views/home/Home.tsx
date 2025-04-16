@@ -1,11 +1,9 @@
-'use client'
-
 import styles from './Home.module.css'
 import { HeroContent } from './HeroContent'
 import CallToActionSection from './CallToActionSection'
 import Services from './Services'
 import Testimonials from './Testimonials'
-
+import heroImage from '../../assets/heroImage.png'
 export function Home() {
   return (
     <>
@@ -13,7 +11,7 @@ export function Home() {
         <div className={styles.heroOverlay}>
           <HeroContent />
           <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/e4f049d15786812537896b9b76a7437e6fc145a2"
+            src={heroImage}
             alt="Logistics illustration"
             className={styles.heroImage}
           />
