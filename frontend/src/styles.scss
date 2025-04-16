@@ -3,7 +3,17 @@
 @import '@fontsource/inter/500.css';
 @import '@fontsource/inter/700.css';
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
 body {
+    height: 100%;
     font-family: 'Inter', sans-serif;
 }
 

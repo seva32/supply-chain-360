@@ -1,0 +1,165 @@
+.container {
+  width: 100vw;
+  background-color: #f8fafc;
+  font-family: Inter, sans-serif;
+  color: #1e293b;
+}
+
+/* Section wrappers */
+.section {
+  padding: 6rem 2rem;
+  position: relative;
+  background-color: white;
+}
+@media (max-width: 640px) {
+  .section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Blur background circles */
+.blurCircle {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background-color: #4318d1;
+  border-radius: 9999px;
+  filter: blur(150px);
+  opacity: 0.07;
+}
+.hideOnLg {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .hideOnLg {
+    display: block;
+  }
+}
+
+.heading {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .heading {
+    font-size: 32px;
+  }
+}
+
+.subheading {
+  margin-top: 1rem;
+  font-size: 20px;
+  color: #64748b;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 640px) {
+  .subheading {
+    font-size: 16px;
+  }
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+@media (max-width: 1024px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.iconBox {
+  width: 3rem;
+  height: 3rem;
+  background-color: #4318d1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: white;
+}
+
+.cardTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+
+.cardText {
+  color: #64748b;
+}
+
+/* "How It Works" section layout */
+.flexWrap {
+  display: flex;
+  gap: 64px;
+  align-items: center;
+}
+@media (max-width: 1024px) {
+  .flexWrap {
+    flex-direction: column;
+  }
+}
+.stepList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 3rem;
+}
+.step {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+.stepNumber {
+  width: 3rem;
+  height: 3rem;
+  background-color: #4318d1;
+  color: white;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+.stepTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.stepText {
+  color: #64748b;
+}
+
+.imageShadow {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.1);
+}

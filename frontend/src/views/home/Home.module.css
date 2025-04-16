@@ -1,9 +1,15 @@
 .heroSection {
     background: linear-gradient(90deg, #9747ff 100%, #4318d1 0%);
+    padding: 0 20px;
+}
+
+.heroOverlay {
     justify-content: space-between;
     align-items: center;
-    padding: 100px 52px;
+    padding: 100px 0;
     display: flex;
+    max-width: 1280px;
+    margin: 0 auto;
 }
 
 .heroImage {
@@ -14,7 +20,7 @@
 }
 
 @media (width <=991px) {
-    .heroSection {
+    .heroOverlay {
         text-align: center;
         flex-direction: column;
         padding: 60px 20px;

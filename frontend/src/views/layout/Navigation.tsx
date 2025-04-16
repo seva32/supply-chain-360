@@ -1,6 +1,7 @@
 'use client'
 import * as React from 'react'
 import { Link } from 'react-router'
+import Toggle from './Toggle'
 import styles from './Navigation.module.css'
 
 function NavigationHeader() {
@@ -23,6 +24,7 @@ function NavigationHeader() {
           Track Shipment
         </Link>
       </nav>
+      <Toggle />
       <Link to="/login" className={styles.loginButton}>
         Login
       </Link>
