@@ -12,7 +12,7 @@ import {
   Terms,
   TrackShipment,
 } from '../../views'
-// import WIP from '../../views/wip/WIP'
+import WIP from '../../views/wip/WIP'
 
 export const routes: RouteObject[] = [
   {
@@ -75,7 +75,8 @@ export const routes: RouteObject[] = [
     path: '/login',
     element: (
       <Layout>
-        <Login />
+        {/* <Login /> */}
+        <WIP />
       </Layout>
     ),
   },

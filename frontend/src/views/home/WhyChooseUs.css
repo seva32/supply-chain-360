@@ -1,5 +1,5 @@
 .container {
-  background-color: #f8f8f8;
+  background-color: #f8fafc;
   padding: 80px 52px;
 }
 
@@ -16,6 +16,7 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 32px;
   display: grid;
+  padding-top: 2rem;
 }
 
 @media (width <= 991px) {

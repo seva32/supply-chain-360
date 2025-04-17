@@ -7,6 +7,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode
   iconPosition?: 'left' | 'right'
   children: React.ReactNode
+  borderless?: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -16,11 +17,12 @@ const Button: React.FC<ButtonProps> = ({
   iconPosition = 'left',
   children,
   className,
+  borderless = false,
   ...rest
 }) => {
   return (
     <button
-      className={`${styles.button} ${styles[variant]} ${styles[size]} ${className || ''}`}
+      className={`${styles.button} ${styles[variant]} ${styles[size]} ${className || ''} ${borderless ? styles.borderless : ''}`.trim()}
       {...rest}
     >
       {icon && iconPosition === 'left' && (

@@ -1,7 +1,14 @@
 import Button from '../../common/Button'
 import styles from './CallToActionSection.module.css'
+import { useNavigate } from 'react-router'
 
 function CallToActionSection() {
+  const navigate = useNavigate()
+
+  const handleContactUs = () => {
+    navigate('/contact')
+  }
+
   return (
     <section className={styles.ctaSection}>
       <h2 className={styles.title}>Ready to Optimize Your Logistics?</h2>
@@ -10,11 +17,9 @@ function CallToActionSection() {
         Get started today!
       </p>
       <Button
-        variant="primary"
+        variant="secondary"
         size="large"
-        onClick={() => {
-          // Handle contact action
-        }}
+        onClick={handleContactUs}
         aria-label="Contact Us"
       >
         Contact Us Now

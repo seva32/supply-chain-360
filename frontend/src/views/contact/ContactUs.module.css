@@ -1,7 +1,7 @@
 .container {
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-color: #f8fafc;
   display: flex;
   flex-direction: column;
@@ -71,7 +71,7 @@
 .iconWrapper {
   width: 2.5rem;
   height: 2.5rem;
-  background-color: #f1f5f9;
+  background-color: #4318d1;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;

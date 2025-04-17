@@ -2,6 +2,7 @@ import styles from './Home.module.css'
 import { HeroContent } from './HeroContent'
 import CallToActionSection from './CallToActionSection'
 import Services from './Services'
+import HowItWorks from './HowItWorks'
 import Testimonials from './Testimonials'
 import heroImage from '../../assets/heroImage.png'
 export function Home() {
@@ -18,6 +19,7 @@ export function Home() {
         </div>
       </section>
       <Services />
+      <HowItWorks />
       <Testimonials />
       <CallToActionSection />
     </>

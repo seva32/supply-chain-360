@@ -16,7 +16,7 @@ export default function Footer() {
                   alt="Logo"
                   className={styles.logoImage}
                 />
-                <span className={styles.logoText}>LogisticsPro</span>
+                <span className={styles.logoText}>Supply360</span>
               </div>
               <p className={styles.description}>
                 Your trusted partner in global logistics and supply chain
@@ -40,7 +40,7 @@ export default function Footer() {
                       height="20"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="currentColor"
+                      stroke="white"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -131,7 +131,7 @@ export default function Footer() {
 
           <div className={styles.bottom}>
             <p className={styles.text}>
-              © 2024 LogisticsPro. All rights reserved.
+              © 2025 LogisticsPro. All rights reserved.
             </p>
             <div className={styles.legalLinks}>
               {['privacy', 'terms', 'cookies'].map((item) => (
