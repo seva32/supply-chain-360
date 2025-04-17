@@ -1,0 +1,85 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.2rem;
+  background-color: #4318d1;
+  cursor: pointer;
+}
+
+.iconWrapper {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+}
+
+.squareTopLeft,
+.squareBottomRight {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.squareTopLeft {
+  top: 0.25rem;
+  left: 0.25rem;
+}
+
+.squareBottomRight {
+  right: 0.25rem;
+  bottom: 0.25rem;
+}
+
+.crossLine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.5rem;
+  height: 2px;
+  background-color: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+@media (width>640px) {
+  .button {
+    display: none;
+  }
+}
+
+.menu {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  background-color: white;
+  z-index: 1000;
+  padding: 10px;
+  width: 100%;
+}
+
+.menuList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menuItem {
+  margin: 0;
+  padding: 8px 0;
+}
+
+.menuLink {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.menuLink:hover {
+  color: #4318d1;
+}

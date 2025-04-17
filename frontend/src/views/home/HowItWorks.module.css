@@ -1,0 +1,95 @@
+.container {
+  background-color: #fff;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: Inter;
+  display: flex;
+  padding-inline: 2rem;
+  padding-bottom: 3rem;
+}
+
+.contentWrapper {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.title {
+  color: #1a1a1a;
+  text-align: center;
+  margin: 50px 0;
+  font-size: 50px;
+  font-weight: 700;
+  margin: 2rem 0;
+}
+
+.contentLayout {
+  align-items: center;
+  gap: 64px;
+  display: flex;
+}
+
+@media (width <= 991px) {
+  .contentLayout {
+    flex-direction: column;
+  }
+}
+
+.imageContainer {
+  width: 1/2;
+  max-width: 60vw;
+}
+
+@media (width <= 991px) {
+  .imageContainer {
+    width: 100%;
+  }
+}
+
+.image {
+  border-radius: 8px;
+  width: 100%;
+  background-color: rgb(242, 205, 253);
+}
+
+.stepsContainer {
+  width: 1/2;
+}
+
+@media (width <= 991px) {
+  .stepsContainer {
+    width: 100%;
+  }
+}
+
+.stepsList {
+  flex-direction: column;
+  gap: 32px;
+  display: flex;
+}
+
+.stepCard {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 24px #0000000a;
+}
+
+.stepLabel {
+  color: #4318d1;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.stepTitle {
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.stepDescription {
+  color: #64748b;
+  font-size: 14px;
+}

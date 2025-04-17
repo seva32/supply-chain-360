@@ -1,0 +1,10 @@
+.buttonGroup {
+  gap: 15px;
+  display: flex;
+}
+
+@media (width <= 640px) {
+  .buttonGroup {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,12 @@
+export { default as Home } from './home/Home'
+export { default as Login } from './login/Login'
+export { default as Layout } from './layout/Layout'
+export { default as Dashboard } from './dashboard/Dashboard'
+export { default as AboutUs } from './about/AboutUs'
+export { default as ContactUs } from './contact/ContactUs'
+export { default as Services } from './services/Services'
+export { default as Policies } from './policies/Policies'
+export { default as Terms } from './terms/Terms'
+export { default as TrackShipment } from './track-shipment/TrackShipment'
+
+export { dashboardLoader } from './dashboard/dashboardLoader'

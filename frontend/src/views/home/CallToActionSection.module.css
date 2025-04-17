@@ -1,0 +1,32 @@
+.ctaSection {
+  text-align: center;
+  background-color: #4318d1;
+  padding: 95px 52px;
+}
+
+@media (width <= 640px) {
+  .ctaSection {
+    padding: 60px 20px;
+  }
+}
+
+.title {
+  color: #fff;
+  margin-bottom: 28px;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+@media (width <= 640px) {
+  .title {
+    font-size: 32px;
+  }
+}
+
+.description {
+  color: #ffffffe6;
+  max-width: 576px;
+  margin: 0 auto 29px;
+  font-size: 20px;
+  line-height: 30px;
+}

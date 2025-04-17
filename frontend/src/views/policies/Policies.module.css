@@ -1,0 +1,104 @@
+.container {
+  padding: 3rem;
+  width: 100%;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 2.5rem;
+  color: #1e293b;
+}
+
+.subtitle {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #64748b;
+}
+
+.card {
+  padding: 2rem;
+  margin-top: 1.5rem;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sectionTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.chevron {
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.sectionContent {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #64748b;
+}
+
+.item {
+  margin-bottom: 0.75rem;
+}
+
+.checkboxWrapper {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: white;
+  border-radius: 0.125rem;
+  border: 1px solid #78716c;
+}
+
+.checkboxLabel {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+  border: none;
+}
