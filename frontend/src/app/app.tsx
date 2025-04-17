@@ -1,13 +1,9 @@
-// Uncomment this line to use CSS modules
-// import styles from './app.module.scss';
-import Welcome from './welcome';
+import { createBrowserRouter, RouterProvider } from 'react-router'
+import { routes } from './routes'
 
-export function App() {
-  return (
-    <div>
-      <Welcome title="frontend" />
-    </div>
-  );
+import './app.module.scss'
+
+export default function App() {
+  const router = createBrowserRouter(routes)
+  return <RouterProvider router={router} />
 }
-
-export default App;
