@@ -20,8 +20,8 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
 
-      - name: Set up pnpm
-        run: corepack prepare pnpm@latest --activate
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install
@@ -45,8 +45,8 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
 
-      - name: Set up pnpm
-        run: corepack prepare pnpm@latest --activate
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install
@@ -70,8 +70,8 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
 
-      - name: Set up pnpm
-        run: corepack prepare pnpm@latest --activate
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install
@@ -95,8 +95,8 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
 
-      - name: Set up pnpm
-        run: corepack prepare pnpm@latest --activate
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install
@@ -118,8 +118,8 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
 
-      - name: Set up pnpm
-        run: corepack prepare pnpm@latest --activate
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install
