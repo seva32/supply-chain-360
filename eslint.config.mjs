@@ -11,7 +11,7 @@ export default [
       '**/vitest.config.*.timestamp*',
       'node_modules',
       './nx',
-      'backend/generated/**/*',
+      'generated/**/*',
     ],
   },
   {
