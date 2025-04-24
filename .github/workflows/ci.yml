@@ -20,10 +20,11 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
 
-      - name: Enable corepack and install dependencies
-        run: |
-          corepack enable
-          pnpm install
+      - name: Set up pnpm
+        run: corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Run ESLint
         run: npx nx run-many --target=lint
@@ -44,10 +45,11 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
 
-      - name: Enable corepack and install dependencies
-        run: |
-          corepack enable
-          pnpm install
+      - name: Set up pnpm
+        run: corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Run Jest Tests (Backend)
         run: npx nx test backend --passWithNoTests
@@ -68,10 +70,11 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
 
-      - name: Enable corepack and install dependencies
-        run: |
-          corepack enable
-          pnpm install
+      - name: Set up pnpm
+        run: corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Run Playwright Tests (Frontend)
         run: npx nx run frontend:e2e
@@ -92,10 +95,11 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
 
-      - name: Enable corepack and install dependencies
-        run: |
-          corepack enable
-          pnpm install
+      - name: Set up pnpm
+        run: corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Build Frontend
         run: npx nx build frontend
@@ -114,10 +118,11 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
 
-      - name: Enable corepack and install dependencies
-        run: |
-          corepack enable
-          pnpm install
+      - name: Set up pnpm
+        run: corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Build Backend
         run: npx nx build backend
