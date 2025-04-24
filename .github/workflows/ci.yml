@@ -21,10 +21,10 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: ./pnpm-lock.yaml
 
-      - name: Install pnpm
-        run: |
-          npm install -g pnpm
-          pnpm --version
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.0 # Specify the desired pnpm version
 
       - name: Run ESLint
         run: npx nx run-many --target=lint
@@ -46,10 +46,10 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: ./pnpm-lock.yaml
 
-      - name: Install pnpm
-        run: |
-          npm install -g pnpm
-          pnpm --version
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.0 # Specify the desired pnpm version
 
       - name: Run Jest Tests (Backend)
         run: npx nx test backend --passWithNoTests
@@ -71,10 +71,10 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: ./pnpm-lock.yaml
 
-      - name: Install pnpm
-        run: |
-          npm install -g pnpm
-          pnpm --version
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.0 # Specify the desired pnpm version
 
       - name: Run Playwright Tests (Frontend)
         run: npx nx run frontend:e2e
@@ -96,10 +96,10 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: ./pnpm-lock.yaml
 
-      - name: Install pnpm
-        run: |
-          npm install -g pnpm
-          pnpm --version
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.0 # Specify the desired pnpm version
 
       - name: Build Frontend
         run: npx nx build frontend
@@ -119,10 +119,10 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: ./pnpm-lock.yaml
 
-      - name: Install pnpm
-        run: |
-          npm install -g pnpm
-          pnpm --version
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.0 # Specify the desired pnpm version
 
       - name: Build Backend
         run: npx nx build backend
