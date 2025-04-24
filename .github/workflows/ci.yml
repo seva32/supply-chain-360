@@ -20,8 +20,11 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
           cache-dependency-path: ./pnpm-lock.yaml
+
       - name: Install pnpm
-        run: corepack enable
+        run: |
+          npm install -g pnpm
+          pnpm --version
 
       - name: Run ESLint
         run: npx nx run-many --target=lint
@@ -42,8 +45,11 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
           cache-dependency-path: ./pnpm-lock.yaml
+
       - name: Install pnpm
-        run: corepack enable
+        run: |
+          npm install -g pnpm
+          pnpm --version
 
       - name: Run Jest Tests (Backend)
         run: npx nx test backend --passWithNoTests
@@ -64,8 +70,11 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
           cache-dependency-path: ./pnpm-lock.yaml
+
       - name: Install pnpm
-        run: corepack enable
+        run: |
+          npm install -g pnpm
+          pnpm --version
 
       - name: Run Playwright Tests (Frontend)
         run: npx nx run frontend:e2e
@@ -86,8 +95,11 @@ jobs:
           node-version: 22.14.0
           cache: 'pnpm'
           cache-dependency-path: ./pnpm-lock.yaml
+
       - name: Install pnpm
-        run: corepack enable
+        run: |
+          npm install -g pnpm
+          pnpm --version
 
       - name: Build Frontend
         run: npx nx build frontend
@@ -108,7 +120,9 @@ jobs:
           cache-dependency-path: ./pnpm-lock.yaml
 
       - name: Install pnpm
-        run: corepack enable
+        run: |
+          npm install -g pnpm
+          pnpm --version
 
       - name: Build Backend
         run: npx nx build backend
