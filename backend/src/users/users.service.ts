@@ -7,7 +7,7 @@ export class UsersService {
   constructor(private prisma: PrismaService) { }
 
   async create(data: CreateUserDto) {
-    let { roleId, ...rest } = data;
+    const { roleId, ...rest } = data;
   
     if (!roleId) {
       const defaultRole = await this.prisma.role.findFirst({
