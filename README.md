@@ -23,4 +23,4 @@ docker compose --f docker-compose.dev.yml up -d
 yarn run prisma:migrate --name init_supply_chain
 ```
 
-Remove node_modules and yarn.lock and reinstall when switching OS or nx errors to build apps (e.g. Cannot find module @rollup/rollup-linux-x64-gnu). 
+In windows work in WSL only.

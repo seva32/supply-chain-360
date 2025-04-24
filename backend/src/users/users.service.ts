@@ -8,8 +8,9 @@ export class UsersService {
 
   async create(data: CreateUserDto) {
     const { roleId, ...rest } = data;
+    let roleIdparsed: string | undefined = roleId;
   
-    if (!roleId) {
+    if (!roleIdparsed) {
       const defaultRole = await this.prisma.role.findFirst({
         where: { name: 'user' },
       });
@@ -18,14 +19,14 @@ export class UsersService {
         throw new Error('Default role not found');
       }
   
-      roleId = defaultRole.id;
+      roleIdparsed = defaultRole.id;
     }
   
     return this.prisma.user.create({
       data: {
         ...rest,
         role: {
-          connect: { id: roleId },
+          connect: { id: roleIdparsed },
         },
       },
     });
