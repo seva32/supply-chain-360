@@ -12,19 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: 22.14.0
-          cache: 'pnpm'
-          cache-dependency-path: ./pnpm-lock.yaml
+            version: 10
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v4
         with:
-          version: 8.6.0 # Specify the desired pnpm version
+            node-version: 22.14.0
+            registry-url: https://registry.npmjs.org
+            cache: pnpm
 
       - name: Run ESLint
         run: npx nx run-many --target=lint
