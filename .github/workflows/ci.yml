@@ -19,14 +19,9 @@ jobs:
         with:
           node-version: 22.14.0
           cache: 'pnpm'
-
+          cache-dependency-path: ./pnpm-lock.yaml
       - name: Install pnpm
-        run: |
-          npm install -g pnpm
-          echo "$(npm bin -g)" >> $GITHUB_PATH
-
-      - name: Install dependencies
-        run: pnpm install
+        run: corepack enable
 
       - name: Run ESLint
         run: npx nx run-many --target=lint
@@ -46,14 +41,9 @@ jobs:
         with:
           node-version: 22.14.0
           cache: 'pnpm'
-
+          cache-dependency-path: ./pnpm-lock.yaml
       - name: Install pnpm
-        run: |
-          npm install -g pnpm
-          echo "$(npm bin -g)" >> $GITHUB_PATH
-
-      - name: Install dependencies
-        run: pnpm install
+        run: corepack enable
 
       - name: Run Jest Tests (Backend)
         run: npx nx test backend --passWithNoTests
@@ -73,14 +63,9 @@ jobs:
         with:
           node-version: 22.14.0
           cache: 'pnpm'
-
+          cache-dependency-path: ./pnpm-lock.yaml
       - name: Install pnpm
-        run: |
-          npm install -g pnpm
-          echo "$(npm bin -g)" >> $GITHUB_PATH
-
-      - name: Install dependencies
-        run: pnpm install
+        run: corepack enable
 
       - name: Run Playwright Tests (Frontend)
         run: npx nx run frontend:e2e
@@ -100,14 +85,9 @@ jobs:
         with:
           node-version: 22.14.0
           cache: 'pnpm'
-
+          cache-dependency-path: ./pnpm-lock.yaml
       - name: Install pnpm
-        run: |
-          npm install -g pnpm
-          echo "$(npm bin -g)" >> $GITHUB_PATH
-
-      - name: Install dependencies
-        run: pnpm install
+        run: corepack enable
 
       - name: Build Frontend
         run: npx nx build frontend
@@ -125,14 +105,10 @@ jobs:
         with:
           node-version: 22.14.0
           cache: 'pnpm'
+          cache-dependency-path: ./pnpm-lock.yaml
 
       - name: Install pnpm
-        run: |
-          npm install -g pnpm
-          echo "$(npm bin -g)" >> $GITHUB_PATH
-
-      - name: Install dependencies
-        run: pnpm install
+        run: corepack enable
 
       - name: Build Backend
         run: npx nx build backend
