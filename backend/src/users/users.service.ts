@@ -4,11 +4,33 @@ import { CreateUserDto, UpdateUserDto } from './dto'
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
-  create(data: CreateUserDto) {
-    return this.prisma.user.create({ data })
+  async create(data: CreateUserDto) {
+    let { roleId, ...rest } = data;
+  
+    if (!roleId) {
+      const defaultRole = await this.prisma.role.findFirst({
+        where: { name: 'user' },
+      });
+  
+      if (!defaultRole) {
+        throw new Error('Default role not found');
+      }
+  
+      roleId = defaultRole.id;
+    }
+  
+    return this.prisma.user.create({
+      data: {
+        ...rest,
+        role: {
+          connect: { id: roleId },
+        },
+      },
+    });
   }
+
 
   findAll() {
     return this.prisma.user.findMany()

@@ -25,7 +25,7 @@ export class AuthService {
 
     let user = await this.usersService.findByEmail(email)
     if (!user) {
-      user = await this.usersService.create({ email, role: 'USER' })
+      user = await this.usersService.create({ email })
     }
 
     if (
@@ -88,7 +88,7 @@ export class AuthService {
     return {
       accessToken,
       refreshToken,
-      user: { email: user.email, role: user.role },
+      user: { email: user.email, role: user.roleId },
     }
   }
 
