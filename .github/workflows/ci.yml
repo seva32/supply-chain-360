@@ -12,19 +12,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: 22.14.0
-          cache: 'yarn'
+            version: 10
 
-      - name: Install dependencies
-        run: yarn install
+      - uses: actions/setup-node@v4
+        with:
+            node-version: 22.14.0
+            registry-url: https://registry.npmjs.org
+            cache: pnpm
+
+      - name: Install Dependencies
+        run: pnpm i --frozen-lockfile
 
       - name: Run ESLint
-        run: npx nx run-many --target=lint
+        run: npx nx run-many --target=lint --projects=frontend,backend
+
         env:
           CI: true
 
@@ -35,15 +40,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22.14.0
-          cache: 'yarn'
-
-      - name: Install dependencies
-        run: yarn install
+          cache: 'pnpm'
+          cache-dependency-path: ./pnpm-lock.yaml
 
       - name: Run Jest Tests (Backend)
         run: npx nx test backend --passWithNoTests
@@ -57,15 +65,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22.14.0
-          cache: 'yarn'
-
-      - name: Install dependencies
-        run: yarn install
+          cache: 'pnpm'
+          cache-dependency-path: ./pnpm-lock.yaml
 
       - name: Run Playwright Tests (Frontend)
         run: npx nx run frontend:e2e
@@ -80,15 +91,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22.14.0
-          cache: 'yarn'
-
-      - name: Install dependencies
-        run: yarn install
-
+          cache: 'pnpm'
+          cache-dependency-path: ./pnpm-lock.yaml
+      
       - name: Build Frontend
         run: npx nx build frontend
 
@@ -100,14 +114,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22.14.0
-          cache: 'yarn'
-
-      - name: Install dependencies
-        run: yarn install
+          cache: 'pnpm'
+          cache-dependency-path: ./pnpm-lock.yaml
 
       - name: Build Backend
         run: npx nx build backend

@@ -8,10 +8,13 @@
     "pg:down": "docker compose -f docker-compose.dev.yml down",
     "prisma:migrate": "dotenv -e .env.local -- prisma migrate dev",
     "prisma:generate": "dotenv -e .env.local -- prisma generate",
-    "prisma:seed": "ts-node prisma/seed/main.ts",
+    "prisma:seed": "dotenv -e .env.local -- npx prisma db seed",
     "serve:backend": "npx nx serve backend",
     "serve:frontend": "npx nx serve frontend",
     "build:frontend": "npx nx build frontend"
+  },
+  "prisma": {
+    "seed": "ts-node --project tsconfig.prisma.json prisma/seed.ts"
   },
   "private": true,
   "dependencies": {
@@ -25,7 +28,7 @@
     "@nestjs/platform-express": "^10.0.2",
     "@nestjs/schedule": "^5.0.1",
     "@nx/nest": "^20.7.2",
-    "@prisma/client": "^6.6.0",
+    "@prisma/client": "6.6.0",
     "@sendgrid/mail": "^8.1.5",
     "axios": "^1.6.0",
     "bcrypt": "^5.1.1",
@@ -85,7 +88,7 @@
     "jiti": "2.4.2",
     "jsdom": "~22.1.0",
     "lint-staged": "^15.5.0",
-    "nx": "20.7.2",
+    "nx": "20.8.0",
     "prettier": "^3.5.3",
     "prisma": "^6.6.0",
     "sass": "^1.55.0",
