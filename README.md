@@ -23,4 +23,6 @@ docker compose --f docker-compose.dev.yml up -d
 yarn run prisma:migrate --name init_supply_chain
 ```
 
+# Notes
+
 In windows work in WSL only.
