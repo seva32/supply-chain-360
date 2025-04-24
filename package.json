@@ -10,7 +10,8 @@
     "prisma:generate": "dotenv -e .env.local -- prisma generate",
     "prisma:seed": "dotenv -e .env.local -- npx prisma db seed",
     "serve:backend": "npx nx serve backend",
-    "serve:frontend": "npx nx serve frontend"
+    "serve:frontend": "npx nx serve frontend",
+    "build:frontend": "npx nx build frontend"
   },
   "prisma": {
     "seed": "ts-node --project tsconfig.prisma.json prisma/seed.ts"

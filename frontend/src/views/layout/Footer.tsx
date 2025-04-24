@@ -122,16 +122,16 @@ export default function Footer() {
                 <span>New York, NY 10001</span>
               </p>
               <p className={styles.text}>
-                <span>Tel: (555) 123-4567</span>
+                <span>Tel: (55E) 123-4567</span>
                 <br />
-                <span>Email: info@logisticspro.com</span>
+                <span>Email: info@supplychain360.com</span>
               </p>
             </div>
           </div>
 
           <div className={styles.bottom}>
             <p className={styles.text}>
-              © 2025 LogisticsPro. All rights reserved.
+              © 2025 SupplyChain360. All rights reserved.
             </p>
             <div className={styles.legalLinks}>
               {['privacy', 'terms', 'cookies'].map((item) => (
