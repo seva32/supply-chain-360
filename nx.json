@@ -19,7 +19,7 @@
       "{workspaceRoot}/.github/workflows/ci.yml"
     ]
   },
-  "nxCloudId": "67f57bf723910d2fef334b07",
+  "neverConnectToCloud": true,
   "plugins": [
     {
       "plugin": "@nx/react/router-plugin",
