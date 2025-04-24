@@ -31,7 +31,7 @@ export default function ContactUs() {
                 <div className={styles.contactText}>
                   <p className={styles.contactLabel}>Phone Number</p>
                   <div className={styles.copyRow}>
-                    <p className={styles.contactValue}>+1 (555) 123-4567</p>
+                    <p className={styles.contactValue}>+1 (55E) 123-4567</p>
                     <button
                       onClick={() => copyToClipboard('+1 (555) 123-4567')}
                       className={styles.copyButton}
@@ -49,7 +49,7 @@ export default function ContactUs() {
                 <div className={styles.contactText}>
                   <p className={styles.contactLabel}>Email Address</p>
                   <div className={styles.copyRow}>
-                    <p className={styles.contactValue}>support@logistics.com</p>
+                    <p className={styles.contactValue}>support@supplychain360.com</p>
                     <button
                       onClick={() => copyToClipboard('support@logistics.com')}
                       className={styles.copyButton}

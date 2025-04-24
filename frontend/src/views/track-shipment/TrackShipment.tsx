@@ -8,17 +8,20 @@ const trackingHistory = [
   },
   {
     time: '2024-01-19 09:15',
-    description: 'Arrived at Chicago Distribution Center',
+    description: 'Arrived at Brooklyn Distribution Center',
   },
   {
     time: '2024-01-18 14:30',
-    description: 'Package departed from Los Angeles Hub',
+    description: 'Package departed from Hoboken Hub',
   },
 ]
 
 export default function TrackShipment() {
-  const [trackingNumber, setTrackingNumber] =
-    React.useState('1Z999AA1234567890')
+  const [trackingNumber, setTrackingNumber] = React.useState('')
+  const [showTrackingInfo, setshowTrackingInfo] = React.useState(false)
+  const handleClick = () => {
+    setshowTrackingInfo(true)
+  }
 
   return (
     <div className={styles.container}>
@@ -38,42 +41,48 @@ export default function TrackShipment() {
               value={trackingNumber}
               onChange={(e) => setTrackingNumber(e.target.value)}
             />
-            <button className={styles.trackButton}>Track</button>
+            <button className={styles.trackButton} onClick={handleClick}>
+              Track
+            </button>
           </div>
 
-          <div className={styles.statusCard} style={{ marginTop: '32px' }}>
-            <div className={styles.statusColumn}>
-              <span className={styles.statusLabel}>Status</span>
-              <span className={styles.statusValue}>In Transit</span>
-            </div>
-            <div className={styles.statusColumn}>
-              <span className={styles.statusLabel}>Current Location</span>
-              <span className={styles.locationValue}>
-                Chicago Distribution Center
-              </span>
-            </div>
-            <div className={styles.statusColumn}>
-              <span className={styles.statusLabel}>Estimated Delivery</span>
-              <span className={styles.etaValue}>2024-01-20</span>
-            </div>
-          </div>
-
-          <div className={styles.history}>
-            <h3 className={styles.historyTitle}>Tracking History</h3>
-            <div className={styles.historyList}>
-              {trackingHistory.map((item, idx) => (
-                <div className={styles.historyItem} key={idx}>
-                  <div className={styles.historyDot} />
-                  <div className={styles.historyInfo}>
-                    <span className={styles.historyTime}>{item.time}</span>
-                    <span className={styles.historyText}>
-                      {item.description}
-                    </span>
-                  </div>
+          {trackingNumber && showTrackingInfo && (
+            <>
+              <div className={styles.statusCard} style={{ marginTop: '32px' }}>
+                <div className={styles.statusColumn}>
+                  <span className={styles.statusLabel}>Status</span>
+                  <span className={styles.statusValue}>In Transit</span>
                 </div>
-              ))}
-            </div>
-          </div>
+                <div className={styles.statusColumn}>
+                  <span className={styles.statusLabel}>Current Location</span>
+                  <span className={styles.locationValue}>
+                    Chicago Distribution Center
+                  </span>
+                </div>
+                <div className={styles.statusColumn}>
+                  <span className={styles.statusLabel}>Estimated Delivery</span>
+                  <span className={styles.etaValue}>2024-01-20</span>
+                </div>
+              </div>
+
+              <div className={styles.history}>
+                <h3 className={styles.historyTitle}>Tracking History</h3>
+                <div className={styles.historyList}>
+                  {trackingHistory.map((item, idx) => (
+                    <div className={styles.historyItem} key={idx}>
+                      <div className={styles.historyDot} />
+                      <div className={styles.historyInfo}>
+                        <span className={styles.historyTime}>{item.time}</span>
+                        <span className={styles.historyText}>
+                          {item.description}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
