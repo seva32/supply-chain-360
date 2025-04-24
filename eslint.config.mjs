@@ -11,10 +11,11 @@ export default [
       '**/vitest.config.*.timestamp*',
       'node_modules',
       './nx',
+      'backend/generated/**/*',
     ],
   },
   {
-    files: ['backend/**/*.{ts,tsx,js,jsx}', 'frontend/**/*.{ts,tsx,js,jsx}', 'src/**/*.{ts,tsx,js,jsx}'],
+    files: ['backend/src/**/*.{ts,tsx,js,jsx}', 'frontend/**/*.{ts,tsx,js,jsx}'],
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',
