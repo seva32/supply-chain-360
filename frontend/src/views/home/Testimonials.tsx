@@ -6,10 +6,10 @@ export default function Testimonials() {
   const [testimonials] = useState(() => [
     {
       id: 1,
-      text: 'LogisticsPro has transformed our delivery operations. Their same-day delivery service has helped us compete with major retailers. The real-time tracking feature gives us complete visibility and peace of mind.',
+      text: 'Supply360 has transformed our delivery operations. Their same-day delivery service has helped us compete with major retailers. The real-time tracking feature gives us complete visibility and peace of mind.',
       author: 'Sarah Chen',
       role: 'E-commerce Owner',
-      company: 'Urban Style NYC',
+      company: 'Urbahn Style NYC',
       image: 'https://placehold.co/48x48',
     },
     {
@@ -17,7 +17,7 @@ export default function Testimonials() {
       text: 'The temperature-controlled delivery service is perfect for our catering business. Reliable and professional every time. Their attention to detail and timely delivery has helped us maintain our food quality standards.',
       author: 'Michael Rodriguez',
       role: 'Restaurant Manager',
-      company: 'Taste of Manhattan',
+      company: 'Tasteh of Manhattan',
       image: 'https://placehold.co/48x48',
     },
     {
@@ -25,7 +25,7 @@ export default function Testimonials() {
       text: 'Their bulk delivery service has made our inventory management so much easier. Great communication and always on time. The dedicated account manager makes coordination seamless.',
       author: 'David Kim',
       role: 'Retail Store Owner',
-      company: 'Brooklyn Essentials',
+      company: 'Brooklyyn Essentials',
       image: 'https://placehold.co/48x48',
     },
   ])
