@@ -1,7 +1,9 @@
 import { RouteObject } from 'react-router'
 import {
   Dashboard,
-  Login,
+  LoginFlow,
+  EmailForm,
+  OtpForm,
   Layout,
   Home,
   dashboardLoader,
@@ -73,12 +75,11 @@ export const routes: RouteObject[] = [
   },
   {
     path: '/login',
-    element: (
-      <Layout>
-        {/* <Login /> */}
-        <WIP />
-      </Layout>
-    ),
+    element: <LoginFlow />,
+    children: [
+      { index: true, element: <EmailForm /> },
+      { path: 'otp', element: <OtpForm /> },
+    ],
   },
   {
     path: '/logout',

@@ -1,5 +1,7 @@
 export { default as Home } from './home/Home'
-export { default as Login } from './login/Login'
+export { default as LoginFlow } from './login/LoginFlow'
+export { default as EmailForm } from './login/EmailForm'
+export { default as OtpForm } from './login/OtpForm'
 export { default as Layout } from './layout/Layout'
 export { default as Dashboard } from './dashboard/Dashboard'
 export { default as AboutUs } from './about/AboutUs'
