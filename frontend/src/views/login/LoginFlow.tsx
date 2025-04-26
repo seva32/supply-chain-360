@@ -1,43 +1,72 @@
 import { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router'
+import styles from './LoginFlow.module.css'
 
 export default function LoginFlow() {
   const [email, setEmail] = useState<string>('')
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
-  const handleEmailSubmit = async (email: string) => {
-    setEmail(email)
+  const handleEmailSubmit = async (emailValue: string) => {
+    setEmail(emailValue)
     try {
-      // Call backend to request OTP
-      await fetch('/api/auth/request-otp', {
+      setIsLoading(true)
+      const response = await fetch('http://localhost:8000/api/auth/request-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: emailValue }),
+        credentials: 'include',
       })
-      navigate('otp') // Navigate to OTP form
+
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`)
+      }
+      
+      navigate('otp')
     } catch (error) {
       console.error('Failed to request OTP:', error)
+      setEmail('')
+    } finally {
+      setIsLoading(false)
     }
   }
 
   const handleOtpSubmit = async (otp: string) => {
     try {
-      const response = await fetch('/api/auth/verify-otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, otp }),
-      })
+      setIsLoading(true)
+      const response = await fetch(
+        'http://localhost:8000/api/auth/verify-otp',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, otp }),
+        },
+      )
 
       if (response.ok) {
-        navigate('/dashboard') // Redirect to dashboard on success
+        const data = await response.json()
+        const { accessToken, refreshToken, user } = data
+        localStorage.setItem('accessToken', accessToken)
+        localStorage.setItem('refreshToken', refreshToken)
+        localStorage.setItem('user', JSON.stringify(user))
+        navigate('/dashboard')
       } else {
-        navigate('/login') // Redirect to email form on failure
+        navigate('/login')
       }
     } catch (error) {
       console.error('Failed to verify OTP:', error)
-      navigate('/login') // Redirect to email form on failure
+      navigate('/login')
+    } finally {
+      setIsLoading(false)
+      setEmail('')
     }
   }
 
-  return <Outlet context={{ email, handleEmailSubmit, handleOtpSubmit }} />
+  return (
+    <div className={styles.loginContainer}>
+      <Outlet
+        context={{ email, handleEmailSubmit, handleOtpSubmit, isLoading }}
+      />
+    </div>
+  )
 }
