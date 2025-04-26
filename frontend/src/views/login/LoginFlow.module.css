@@ -1,0 +1,9 @@
+.loginContainer {
+  background-color: #4318d1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  font-family: Inter;
+}
