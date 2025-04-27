@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router'
+import { api } from '../../api'
 import styles from './LoginFlow.module.css'
 
 export default function LoginFlow() {
@@ -11,21 +12,12 @@ export default function LoginFlow() {
     setEmail(emailValue)
     try {
       setIsLoading(true)
-      const response = await fetch('http://localhost:8000/api/auth/request-otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: emailValue }),
-        credentials: 'include',
-      })
-
-      if (!response.ok) {
-        throw new Error(`Request failed with status ${response.status}`)
-      }
-      
+      await api.post('/auth/request-otp', { email: emailValue })
       navigate('otp')
     } catch (error) {
-      console.error('Failed to request OTP:', error)
       setEmail('')
+      console.error('Failed to request OTP:', error)
+      alert('Failed to send OTP. Please try again.')
     } finally {
       setIsLoading(false)
     }
@@ -34,27 +26,23 @@ export default function LoginFlow() {
   const handleOtpSubmit = async (otp: string) => {
     try {
       setIsLoading(true)
-      const response = await fetch(
-        'http://localhost:8000/api/auth/verify-otp',
+      const data = await api.post<
         {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, otp }),
+          accessToken: string
+          refreshToken: string
+          user: object
         },
-      )
+        { email: string; otp: string }
+      >('/auth/verify-otp', { email, otp })
 
-      if (response.ok) {
-        const data = await response.json()
-        const { accessToken, refreshToken, user } = data
-        localStorage.setItem('accessToken', accessToken)
-        localStorage.setItem('refreshToken', refreshToken)
-        localStorage.setItem('user', JSON.stringify(user))
-        navigate('/dashboard')
-      } else {
-        navigate('/login')
-      }
+      const { accessToken, refreshToken, user } = data
+      localStorage.setItem('accessToken', accessToken)
+      localStorage.setItem('refreshToken', refreshToken)
+      localStorage.setItem('user', JSON.stringify(user))
+      navigate('/dashboard')
     } catch (error) {
       console.error('Failed to verify OTP:', error)
+      alert('Failed to verify OTP. Please try again.')
       navigate('/login')
     } finally {
       setIsLoading(false)
