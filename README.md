@@ -1,5 +1,55 @@
 # SupplyChain360
 
+## Tech Stack
+
+Frontend: React, Vite, Zustand.
+
+3D Library: Three.js with React Three Fiber.
+
+Charts: Chart.js for data visualizations.
+
+Backend: NestJS with WebSockets for real-time updates.
+
+Database: PostgreSQL with Prisma.
+
+Authentication: OTP and JWT auth, RBAC.
+
+Deployment: Docker, Nginx, and Cloudflare for security.
+
+## Features
+
+1. Interactive Dashboards
+
+Real-time shipment tracking.
+
+Predictive analytics for delivery times.
+
+Performance insights with Chart.js (bar, line, and pie charts).
+
+2. 3D Supply Chain Visualization
+
+A 3D globe showing live shipment routes (React Three Fiber).
+
+Warehouse and fleet management with animated 3D models.
+
+Interactive 3D product inventory for logistics optimization.
+
+3. Real-Time Updates
+
+WebSockets for live shipment updates.
+
+Alerts when shipments are delayed.
+
+4. User Management
+
+Roles & permissions (Admin, Manager, Viewer).
+
+Secure authentication.
+
+5. Reports & Exports
+
+Generate PDF & Excel reports for business insights.
+
 ## Run tasks
 
 To run tasks with Nx use:
