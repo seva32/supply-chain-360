@@ -13,8 +13,11 @@ import {
   Policies,
   Terms,
   TrackShipment,
-} from '../../views'
-import WIP from '../../views/wip/WIP'
+} from '../views'
+import ProtectedRoute from './ProtectedRoute'
+import { Navigate } from 'react-router'
+import NotFound from './NotFound'
+// import WIP from '../views/wip/WIP'
 
 export const routes: RouteObject[] = [
   {
@@ -86,8 +89,12 @@ export const routes: RouteObject[] = [
     element: <>Logout</>,
   },
   {
-    path: '/dashboard',
-    element: <Dashboard />,
-    loader: dashboardLoader,
+    path: '/app',
+    element: <ProtectedRoute />,
+    children: [
+      { index: true, element: <Navigate to="dashboard" replace /> },
+      { path: 'dashboard', element: <Dashboard />, loader: dashboardLoader },
+    ],
   },
+  { path: '*', element: <NotFound /> },
 ]
