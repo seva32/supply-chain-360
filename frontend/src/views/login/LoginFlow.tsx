@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router'
 import { api } from '../../api'
+import { useAuthStore } from '../../stores/authStore'
 import styles from './LoginFlow.module.css'
 
 export default function LoginFlow() {
+  const login = useAuthStore((state) => state.login)
   const [email, setEmail] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
@@ -36,10 +38,9 @@ export default function LoginFlow() {
       >('/auth/verify-otp', { email, otp })
 
       const { accessToken, refreshToken, user } = data
-      localStorage.setItem('accessToken', accessToken)
-      localStorage.setItem('refreshToken', refreshToken)
+      login(accessToken, refreshToken)
       localStorage.setItem('user', JSON.stringify(user))
-      navigate('/dashboard')
+      navigate('/app')
     } catch (error) {
       console.error('Failed to verify OTP:', error)
       alert('Failed to verify OTP. Please try again.')
