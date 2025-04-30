@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router'
 import { api } from '../../api'
 import { useAuthStore } from '../../stores/authStore'
+import { useNotification } from '../../common/Notification'
 import styles from './LoginFlow.module.css'
 
 export default function LoginFlow() {
@@ -9,12 +10,18 @@ export default function LoginFlow() {
   const [email, setEmail] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const { showNotification } = useNotification()
 
   const handleEmailSubmit = async (emailValue: string) => {
     setEmail(emailValue)
     try {
       setIsLoading(true)
       await api.post('/auth/request-otp', { email: emailValue })
+      showNotification({
+        message: 'OTP sent successfully',
+        description: 'Please check your email for the OTP.',
+        type: 'SUCCESS',
+      })
       navigate('otp')
     } catch (error) {
       setEmail('')
@@ -40,6 +47,10 @@ export default function LoginFlow() {
       const { accessToken, refreshToken, user } = data
       login(accessToken, refreshToken)
       localStorage.setItem('user', JSON.stringify(user))
+      showNotification({
+        message: 'Login successful',
+        type: 'SUCCESS',
+      })
       navigate('/app')
     } catch (error) {
       console.error('Failed to verify OTP:', error)

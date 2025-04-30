@@ -1,0 +1,41 @@
+.a11y-notification {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px 24px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  position: relative;
+  width: 300px;
+
+  .a11y-notification-message {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+
+  .a11y-notification-description {
+    padding-left: 31px;
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  .a11y-notification-close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+
+  .closeBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #eee;
+    }
+  }
+}
