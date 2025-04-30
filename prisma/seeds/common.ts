@@ -7,37 +7,79 @@ export async function seedCommon(prisma: PrismaClient) {
       { name: 'view_shipments' },
       { name: 'edit_shipments' },
       { name: 'manage_users' },
+      { name: 'lock_unlock_users' },
+      { name: 'view_audit_logs' },
+      { name: 'manage_roles' },
     ],
     skipDuplicates: true,
   })
 
-  const all = await prisma.permission.findMany()
-  const adminRoleId = randomUUID()
-  const userRoleId = randomUUID()
+  const allPermissions = await prisma.permission.findMany()
 
-  await prisma.role.create({
-    data: {
-      id: adminRoleId,
+  function findPerm(name: string) {
+    const p = allPermissions.find((perm) => perm.name === name)
+    if (!p) throw new Error(`Permission '${name}' not found`)
+    return { id: p.id }
+  }
+
+  const roles = [
+    {
+      id: randomUUID(),
       name: 'admin',
-      permissions: { connect: all.map((p) => ({ id: p.id })) },
+      permissions: allPermissions.map((p) => ({ id: p.id })),
     },
-  })
-
-  await prisma.role.create({
-    data: {
-      id: userRoleId,
+    {
+      id: randomUUID(),
       name: 'user',
-      permissions: {
-        connect: (() => {
-          const permission = all.find((p) => p.name === 'view_shipments');
-          if (!permission) {
-            throw new Error("Permission 'view_shipments' not found");
-          }
-          return [{ id: permission.id }];
-        })(),
-      },
+      permissions: [findPerm('view_shipments')],
     },
-  })
+    {
+      id: randomUUID(),
+      name: 'client',
+      permissions: [findPerm('view_shipments')],
+    },
+    {
+      id: randomUUID(),
+      name: 'driver',
+      permissions: [findPerm('view_shipments'), findPerm('edit_shipments')],
+    },
+    {
+      id: randomUUID(),
+      name: 'finance',
+      permissions: [findPerm('view_shipments'), findPerm('view_audit_logs')],
+    },
+    {
+      id: randomUUID(),
+      name: 'manager',
+      permissions: [
+        findPerm('view_shipments'),
+        findPerm('edit_shipments'),
+        findPerm('manage_users'),
+        findPerm('manage_roles'),
+      ],
+    },
+  ]
 
-  return { adminRoleId, userRoleId }
+  for (const role of roles) {
+    await prisma.role.upsert({
+      where: { name: role.name },
+      update: {
+        permissions: {
+          set: [],
+          connect: role.permissions,
+        },
+      },
+      create: {
+        id: role.id,
+        name: role.name,
+        permissions: {
+          connect: role.permissions,
+        },
+      },
+    })
+  }
+
+  return {
+    roleIds: Object.fromEntries(roles.map((r) => [r.name, r.id])),
+  }
 }
