@@ -71,6 +71,7 @@ You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx 
 ```bash
 docker compose --f docker-compose.dev.yml up -d
 yarn run prisma:migrate --name init_supply_chain
+export $(grep -v '^#' .env.local | xargs) && docker exec -it "$POSTGRES_HOST_DEV" psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"
 ```
 
 # Notes

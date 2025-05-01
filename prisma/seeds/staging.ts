@@ -8,6 +8,7 @@ export async function seedStaging(prisma: PrismaClient) {
     data: {
       email: 'admin-staging-supply360@yopmail.com',
       roleId: roleIds.admin,
+      locked: false,
     },
   })
 }
