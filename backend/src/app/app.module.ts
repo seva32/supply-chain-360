@@ -7,6 +7,8 @@ import { PrismaModule } from '../prisma/prisma.module'
 import { AuthModule } from '../auth/auth.module'
 import { UsersModule } from '../users/users.module'
 import { ScheduleModule } from '@nestjs/schedule'
+import { APP_GUARD } from '@nestjs/core';
+import { PermissionsGuard } from '../guards/permissions.guard'
 
 @Module({
   imports: [
@@ -20,6 +22,9 @@ import { ScheduleModule } from '@nestjs/schedule'
     UsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, {
+    provide: APP_GUARD,
+    useClass: PermissionsGuard,
+  },],
 })
-export class AppModule {}
+export class AppModule { }
