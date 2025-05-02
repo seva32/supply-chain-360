@@ -12,7 +12,7 @@ export class UsersService {
   
     if (!roleIdparsed) {
       const defaultRole = await this.prisma.role.findFirst({
-        where: { name: 'user' },
+        where: { name: 'client' },
       });
   
       if (!defaultRole) {
@@ -25,9 +25,8 @@ export class UsersService {
     return this.prisma.user.create({
       data: {
         ...rest,
-        role: {
-          connect: { id: roleIdparsed },
-        },
+        roleId: roleIdparsed,
+        locked: false,
       },
     });
   }

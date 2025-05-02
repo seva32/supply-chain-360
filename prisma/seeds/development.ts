@@ -8,13 +8,14 @@ export async function seedDevelopment(prisma: PrismaClient) {
     data: {
       email: 'admin-supply360@yopmail.com',
       roleId: roleIds.admin,
+      locked: false,
     },
   })
 
   await prisma.user.createMany({
     data: [
-      { email: 'user1-supply360@yopmail.com', roleId: roleIds.client },
-      { email: 'user2-supply360@yopmail.com', roleId: roleIds.client },
+      { email: 'user1-supply360@yopmail.com', roleId: roleIds.client, locked: false },
+      { email: 'user2-supply360@yopmail.com', roleId: roleIds.client, locked: false },
     ],
     skipDuplicates: true,
   })
