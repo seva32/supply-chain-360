@@ -54,7 +54,10 @@ export default function LoginFlow() {
       navigate('/app')
     } catch (error) {
       console.error('Failed to verify OTP:', error)
-      alert('Failed to verify OTP. Please try again.')
+      showNotification({
+        message: 'Failed to verify OTP. Please try again.',
+        type: 'ERROR',
+      })
       navigate('/login')
     } finally {
       setIsLoading(false)
