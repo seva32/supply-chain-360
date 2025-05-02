@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useState, useCallback } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useRef,
+  useEffect,
+} from 'react'
 import ReactDOM from 'react-dom'
 import AccessibleNotification from './AccessibleNotification'
 
@@ -30,22 +37,34 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [notifications, setNotifications] = useState<Notification[]>([])
 
+  const timeouts = useRef<Map<number, NodeJS.Timeout>>(new Map())
+
   const showNotification = useCallback(
     (notification: Omit<Notification, 'id'>) => {
       const id = idCounter++
       setNotifications((prev) => [...prev, { id, ...notification }])
 
-      setTimeout(
+      const timeout = setTimeout(
         () => {
           setNotifications((prev) => prev.filter((n) => n.id !== id))
+          timeouts.current.delete(id)
         },
         notification.duration && notification.duration > 5
           ? notification.duration * 1000
           : 5000,
       )
+
+      timeouts.current.set(id, timeout)
     },
     [],
   )
+
+  useEffect(() => {
+    return () => {
+      timeouts.current.forEach((timeout) => clearTimeout(timeout))
+      timeouts.current.clear()
+    }
+  }, [])
 
   const contextValue: NotificationContextType = { showNotification }
 
@@ -55,7 +74,15 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
       {ReactDOM.createPortal(
         <div style={{ position: 'fixed', top: 16, right: 16, zIndex: 9999 }}>
           {notifications.map((n) => (
-            <AccessibleNotification key={n.id} {...n} />
+            <AccessibleNotification
+              key={n.id}
+              {...n}
+              onClose={() =>
+                setNotifications((prev) =>
+                  prev.filter((notif) => notif.id !== n.id),
+                )
+              }
+            />
           ))}
         </div>,
         document.body,

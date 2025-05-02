@@ -1,15 +1,17 @@
 import { useEffect, useRef } from 'react'
 import { SuccessIcon, ErrorIcon, CloseIcon } from './NotificationIcons'
 import styles from './Notification.module.scss'
+import { on } from 'events'
 
 interface Props {
   message: string
   description?: string
   duration?: number
   type: 'SUCCESS' | 'ERROR'
+  onClose: () => void
 }
 
-const AccessibleNotification = ({ message, description, type }: Props) => {
+const AccessibleNotification = ({ message, description, type, onClose }: Props) => {
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const notificationRef = useRef<HTMLDivElement>(null)
 
@@ -40,7 +42,7 @@ const AccessibleNotification = ({ message, description, type }: Props) => {
       <div className={styles['a11y-notification-close-button']}>
         <button
           ref={closeButtonRef}
-          onClick={() => notificationRef.current?.remove()}
+          onClick={onClose}
           aria-label="Close notification"
           type="button"
           className={styles.closeBtn}

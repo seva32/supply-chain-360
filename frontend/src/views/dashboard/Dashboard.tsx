@@ -6,6 +6,7 @@ import styles from './Dashboard.module.css'
 import Shipments from './shipments/Shipments'
 import Invoices from './invoices/Invoices'
 import { Link } from 'react-router'
+import LogoutButton from '../../common/LogoutButton'
 
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -97,6 +98,7 @@ function Dashboard() {
             </div>
           ))}
         </nav>
+        <LogoutButton />
       </div>
 
       <div className={styles.main}>
