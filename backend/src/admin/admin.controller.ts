@@ -27,6 +27,13 @@ export class AdminController {
         return this.adminService.getAllUsers()
     }
 
+    @Get('roles')
+    @Permissions('manage_users')
+    async getAllRolesWithPermissions(@Req() req: RequestWithUser) {
+        return this.adminService.getAllRolesWithPermissions();
+    }
+
+
     @Put('users/:id/role')
     @Permissions('manage_users')
     changeUserRole(

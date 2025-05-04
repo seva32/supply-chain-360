@@ -4,7 +4,7 @@ import { PrismaService } from '../prisma/prisma.service'
 
 @Injectable()
 export class AdminService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async changeUserRole(actorId: string, userId: string, roleId: string) {
     const user = await this.prisma.user.findUnique({ where: { id: userId } })
@@ -87,9 +87,18 @@ export class AdminService {
     return this.prisma.user.findMany({
       include: {
         role: {
-          select: { name: true, id: true },
+          select: { name: true, id: true, permissions: { select: { permission: true } } },
         },
       },
     })
   }
+
+  async getAllRolesWithPermissions() {
+    return this.prisma.role.findMany({
+      include: {
+        permissions: true,
+      },
+    });
+  }
+
 }

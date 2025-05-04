@@ -34,17 +34,27 @@ model Otp {
   user      User     @relation(fields: [userId], references: [id])
 }
 
-model Permission {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  roles     Role[]   @relation("RolePermissions")
+model Role {
+  id          String           @id @default(cuid())
+  name        String           @unique
+  permissions RolePermission[] // Explicit relation to RolePermission
+  users       User[]
 }
 
-model Role {
-  id          String       @id @default(cuid())
-  name        String       @unique
-  permissions Permission[] @relation("RolePermissions")
-  users       User[]
+model Permission {
+  id        String           @id @default(cuid())
+  name      String           @unique
+  roles     RolePermission[] // Explicit relation to RolePermission
+}
+
+model RolePermission {
+  id           String      @id @default(cuid())
+  roleId       String
+  permissionId String
+  role         Role        @relation(fields: [roleId], references: [id])
+  permission   Permission  @relation(fields: [permissionId], references: [id])
+
+  @@unique([roleId, permissionId]) // Ensure unique combinations of role and permission
 }
 
 model Product {

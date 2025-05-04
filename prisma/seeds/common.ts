@@ -19,14 +19,14 @@ export async function seedCommon(prisma: PrismaClient) {
   function findPerm(name: string) {
     const p = allPermissions.find((perm) => perm.name === name)
     if (!p) throw new Error(`Permission '${name}' not found`)
-    return { id: p.id }
+    return p
   }
 
   const roles = [
     {
       id: randomUUID(),
       name: 'admin',
-      permissions: allPermissions.map((p) => ({ id: p.id })),
+      permissions: allPermissions.map((p) => p),
     },
     {
       id: randomUUID(),
@@ -61,22 +61,30 @@ export async function seedCommon(prisma: PrismaClient) {
   ]
 
   for (const role of roles) {
-    await prisma.role.upsert({
+    const createdRole = await prisma.role.upsert({
       where: { name: role.name },
-      update: {
-        permissions: {
-          set: [],
-          connect: role.permissions,
-        },
-      },
+      update: {},
       create: {
         id: role.id,
         name: role.name,
-        permissions: {
-          connect: role.permissions,
-        },
       },
     })
+
+    for (const permission of role.permissions) {
+      await prisma.rolePermission.upsert({
+        where: {
+          roleId_permissionId: {
+            roleId: createdRole.id,
+            permissionId: permission.id,
+          },
+        },
+        update: {},
+        create: {
+          roleId: createdRole.id,
+          permissionId: permission.id,
+        },
+      })
+    }
   }
 
   return {
