@@ -60,9 +60,10 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
   )
 
   useEffect(() => {
+    const timeoutsLocal = timeouts.current
     return () => {
-      timeouts.current.forEach((timeout) => clearTimeout(timeout))
-      timeouts.current.clear()
+      timeoutsLocal.forEach((timeout) => clearTimeout(timeout))
+      timeoutsLocal.clear()
     }
   }, [])
 

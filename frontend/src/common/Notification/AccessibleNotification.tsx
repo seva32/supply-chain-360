@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { SuccessIcon, ErrorIcon, CloseIcon } from './NotificationIcons'
 import styles from './Notification.module.scss'
-import { on } from 'events'
 
 interface Props {
   message: string

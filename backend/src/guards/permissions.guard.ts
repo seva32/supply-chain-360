@@ -19,7 +19,7 @@ export class PermissionsGuard implements CanActivate {
             throw new ForbiddenException('No permissions found');
         }
 
-        const userPermissions = user.role.permissions.map((p: { name: string }) => p.name);
+        const userPermissions = user.role.permissions.map((p: { permission: { name: string } }) => p.permission.name);
 
         const hasPermission = requiredPermissions.every((perm) =>
             userPermissions.includes(perm)
