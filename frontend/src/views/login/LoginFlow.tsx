@@ -4,6 +4,7 @@ import { api } from '../../api'
 import { useAuthStore } from '../../stores/authStore'
 import { useNotification } from '../../common/Notification'
 import styles from './LoginFlow.module.css'
+import type { User } from '../../stores/auth.types'
 
 export default function LoginFlow() {
   const login = useAuthStore((state) => state.login)
@@ -39,14 +40,13 @@ export default function LoginFlow() {
         {
           accessToken: string
           refreshToken: string
-          user: object
+          user: User
         },
         { email: string; otp: string }
       >('/auth/verify-otp', { email, otp })
 
       const { accessToken, refreshToken, user } = data
-      login(accessToken, refreshToken)
-      localStorage.setItem('user', JSON.stringify(user))
+      login(accessToken, refreshToken, user)
       showNotification({
         message: 'Login successful',
         type: 'SUCCESS',
