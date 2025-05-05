@@ -40,11 +40,11 @@ export const CloseIcon = () => (
     <g
       id="Page-1"
       stroke="none"
-      stroke-width="1"
+      strokeWidth="1"
       fill="none"
       fillRule="evenodd"
     >
-      <g id="close" fill="#000000" fill-rule="nonzero">
+      <g id="close" fill="#000000" fillRule="nonzero">
         <polygon
           id="path-1_2_"
           points="18 0.8 17.2 0 9 8.2 0.8 0 0 0.8 8.2 9 0 17.2 0.8 18 9 9.8 17.2 18 18 17.2 9.8 9"

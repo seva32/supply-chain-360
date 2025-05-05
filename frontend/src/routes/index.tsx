@@ -14,6 +14,7 @@ import {
   Terms,
   TrackShipment,
 } from '../views'
+import ErrorBoundary from './ErrorBoundary'
 import ProtectedRoute from './ProtectedRoute'
 import { Navigate } from 'react-router'
 import NotFound from './NotFound'
@@ -91,6 +92,7 @@ export const routes: RouteObject[] = [
   {
     path: '/app',
     element: <ProtectedRoute />,
+    errorElement: <ErrorBoundary />,
     children: [
       { index: true, element: <Navigate to="dashboard" replace /> },
       { path: 'dashboard', element: <Dashboard />, loader: dashboardLoader },
