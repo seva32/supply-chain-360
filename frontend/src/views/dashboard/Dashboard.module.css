@@ -7,6 +7,7 @@
 
 .sidebar {
   display: flex;
+  min-width: 70px;
   flex-direction: column;
   transition: all 0.3s ease-in-out;
   background-color: #1e293b;
@@ -45,6 +46,7 @@
 .navButton {
   display: flex;
   align-items: center;
+  box-sizing: border-box;
   padding: 0.75rem;
   border-radius: 0.375rem;
   transition: all 0.2s ease-in-out;
@@ -207,8 +209,14 @@
 }
 
 .iconPlaceholder {
-  width: 1.25rem;
-  height: 1.25rem;
-  background-color: #64748b;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: rgb(233, 233, 233);
   border-radius: 0.25rem;
+}
+
+.activeIcon {
+  background-color: rgb(255, 255, 255);
+  width: 1.55rem;
+  height: 1.55rem;
 }
