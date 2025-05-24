@@ -7,6 +7,50 @@ import Shipments from './shipments/Shipments'
 import Invoices from './invoices/Invoices'
 import { Link } from 'react-router'
 import LogoutButton from '../../common/LogoutButton'
+import Logo from '../../assets/logo.svg'
+import OverviewIcon from '../../assets/overview.svg'
+import UsersIcon from '../../assets/users.svg'
+import ShipmentsIcon from '../../assets/shipments.svg'
+import InvoicesIcon from '../../assets/invoices.svg'
+
+const menuItems = [
+  {
+    key: 'overview',
+    label: 'Overview',
+    icon: OverviewIcon,
+    submenus: [
+      { label: 'Overview Item 1', href: '#' },
+      { label: 'Overview Item 2', href: '#' },
+    ],
+  },
+  {
+    key: 'users',
+    label: 'Users',
+    icon: UsersIcon,
+    submenus: [
+      { label: 'All Users', href: '#' },
+      { label: 'Add User', href: '#' },
+    ],
+  },
+  {
+    key: 'shipments',
+    label: 'Shipments',
+    icon: ShipmentsIcon,
+    submenus: [
+      { label: 'All Shipments', href: '#' },
+      { label: 'Create Shipment', href: '#' },
+    ],
+  },
+  {
+    key: 'invoices',
+    label: 'Invoices',
+    icon: InvoicesIcon,
+    submenus: [
+      { label: 'All Invoices', href: '#' },
+      { label: 'Create Invoice', href: '#' },
+    ],
+  },
+]
 
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -55,11 +99,8 @@ function Dashboard() {
       >
         <div className={styles.sidebarHeader}>
           <Link to="/" className={styles.logoLink}>
-            <img
-              src="https://placehold.co/32x32"
-              alt="Logo"
-              className={styles.logo}
-            />
+            <img src={Logo} alt="Logo" className={styles.logo} />
+            {/* <Logo /> */}
           </Link>
           <span className={styles.logoText} hidden={!sidebarOpen}>
             Dashboard
@@ -67,34 +108,42 @@ function Dashboard() {
         </div>
 
         <nav className={styles.nav}>
-          {['overview', 'users', 'shipments', 'invoices'].map((menu) => (
-            <div className={styles.navGroup} key={menu}>
+          {menuItems.map((menu) => (
+            <div className={styles.navGroup} key={menu.key}>
               <button
                 className={styles.navButton}
-                onClick={() => toggleMenu(menu)}
+                onClick={() => toggleMenu(menu.key)}
                 style={{
-                  background: activeMenu === menu ? '#334155' : undefined,
+                  background: activeMenu === menu.key ? '#334155' : undefined,
                 }}
-                aria-expanded={activeMenu === menu}
+                aria-expanded={activeMenu === menu.key}
               >
-                <span className={styles.iconPlaceholder}></span>
+                <img
+                  src={menu.icon}
+                  alt=""
+                  className={`${styles.iconPlaceholder} ${
+                    activeMenu === menu.key ? styles.activeIcon : ''
+                  }`}
+                />
                 <span className={styles.menuText} hidden={!sidebarOpen}>
-                  {menu[0].toUpperCase() + menu.slice(1)}
+                  {menu.label}
                 </span>
               </button>
-              {!(sidebarOpen && activeMenu === menu) ? null : (
+              {sidebarOpen &&
+              activeMenu === menu.key &&
+              menu.submenus?.length ? (
                 <div className={styles.subMenu}>
-                  <a className={styles.subMenuItem} href="#">
-                    Item 1
-                  </a>
-                  <a className={styles.subMenuItem} href="#">
-                    Item 2
-                  </a>
-                  <a className={styles.subMenuItem} href="#">
-                    Item 3
-                  </a>
+                  {menu.submenus.map((submenu, idx) => (
+                    <a
+                      className={styles.subMenuItem}
+                      href={submenu.href}
+                      key={idx}
+                    >
+                      {submenu.label}
+                    </a>
+                  ))}
                 </div>
-              )}
+              ) : null}
             </div>
           ))}
         </nav>

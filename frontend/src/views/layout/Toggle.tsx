@@ -1,10 +1,14 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
+import { useAuthStore } from '../../stores/authStore'
+
 import styles from './Toggle.module.css'
 
 function Toggle() {
   const [isHovered, setIsHovered] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+  const logout = useAuthStore((state) => state.logout)
 
   const handleClick = () => {
     setIsOpen((prev) => !prev)
@@ -75,26 +79,48 @@ function Toggle() {
       {isOpen && (
         <div className={styles.menu}>
           <ul className={styles.menuList}>
-            <li className={styles.menuItem}>
-              <Link to="/services" className={styles.menuLink}>
-                Services
-              </Link>
-            </li>
-            <li className={styles.menuItem}>
-              <Link to="/about" className={styles.menuLink}>
-                About
-              </Link>
-            </li>
-            <li className={styles.menuItem}>
-              <Link to="/contact" className={styles.menuLink}>
-                Contact
-              </Link>
-            </li>
-            <li className={styles.menuItem}>
-              <Link to="/login" className={styles.menuLink}>
-                Login
-              </Link>
-            </li>
+            {isAuthenticated ? (
+              <>
+                <li className={styles.menuItem}>
+                  <Link to="/app/dashboard" className={styles.menuLink}>
+                    Dashboard
+                  </Link>
+                </li>
+                <li className={styles.menuItem}>
+                  <Link to="/track-shipment" className={styles.menuLink}>
+                    Track Shipment
+                  </Link>
+                </li>
+                <li className={styles.menuItem}>
+                  <button onClick={() => logout()} className={styles.menuLink}>
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className={styles.menuItem}>
+                  <Link to="/services" className={styles.menuLink}>
+                    Services
+                  </Link>
+                </li>
+                <li className={styles.menuItem}>
+                  <Link to="/about" className={styles.menuLink}>
+                    About
+                  </Link>
+                </li>
+                <li className={styles.menuItem}>
+                  <Link to="/contact" className={styles.menuLink}>
+                    Contact
+                  </Link>
+                </li>
+                <li className={styles.menuItem}>
+                  <Link to="/login" className={styles.menuLink}>
+                    Login
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       )}

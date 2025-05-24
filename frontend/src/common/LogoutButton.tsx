@@ -1,6 +1,8 @@
 import { useAuthStore } from '../stores/authStore'
 import { useNavigate } from 'react-router'
 
+import styles from './LogoutButton.module.css'
+
 export default function Header() {
   const logout = useAuthStore((state) => state.logout)
   const navigate = useNavigate()
@@ -10,9 +12,5 @@ export default function Header() {
     navigate('/login')
   }
 
-  return (
-    <header>
-      <button onClick={handleLogout}>Logout</button>
-    </header>
-  )
+  return <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
 }
